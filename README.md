@@ -13,8 +13,8 @@ This is a single-page application (SPA) skeleton based on [Mithril.js](https://m
 ~~~bash
 git clone {project}
 cd {project}
-composer install
-npm install
+npm install --prefix frontend
+composer install --working-dir backend
 ~~~
 
 
@@ -49,23 +49,26 @@ PHP backend
 
 ## Development
 
-Start frontend
+Start development environment
 
 ~~~bash
-npm run dev
+sh start.sh
 ~~~
 
-Start backend
+Or start one after the other.
+
+Frontend
 
 ~~~bash
-php -S localhost:7000 -t public
+npm run dev --prefix frontend
 ~~~
 
-Or both together
+Backend
 
 ~~~bash
-composer start
+ENVIRONMENT=development php -d variables_order=EGPCS -S localhost:7000 -t backend/public
 ~~~
+
 
 
 ## Scripts
