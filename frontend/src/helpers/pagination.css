@@ -1,0 +1,38 @@
+.pagination {
+    display: block;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.pagination a {
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #73828c;
+}
+
+.pagination a.disabled {
+    color: #73828c;
+    cursor: inherit;
+}
+
+.pagination .text {
+    border: 1px solid #73828c;
+    padding: 8px 16px;
+}
+
+.pagination .first {
+    border-right: none;
+}
+
+.pagination .prev {
+    border-right: none;
+}
+
+.pagination .next {
+    border-left: none;
+}
+
+.pagination .last {
+    border-left: none;
+}

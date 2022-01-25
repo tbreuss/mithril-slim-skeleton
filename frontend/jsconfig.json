@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "outDir": "./dummy",
+        "target": "ES6",
+        "lib": ["ES6", "DOM"],
+        "checkJs": true,
+        "allowJs": true,
+        "skipLibCheck": true,
+        "moduleResolution": "Node",
+        "strictNullChecks": true,
+        "allowSyntheticDefaultImports": true,
+        "strict": true,
+        "noImplicitAny": false,
+        "baseUrl": "./",
+        "paths": {
+            "@/*": [
+                "src/*"
+            ]
+        },
+    },
+    "include": [
+        "src",
+    ],
+    "exclude": [
+    ]
+}
