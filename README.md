@@ -8,7 +8,7 @@ This is a single-page application (SPA) skeleton based on [Mithril.js](https://m
 <https://mithril-slim-skeleton.tebe.ch/>
 
 
-## Prerequisites
+## Requirements
 
 - PHP >= 8.0
 - Composer >= 2.0
@@ -30,29 +30,38 @@ composer install --working-dir backend
 
 JS frontend
 
-- Single page application (SPA) using Mithril.js
-- Mitosis pattern for simple state management
-- Types without TypeScript using JSDoc
-- Frontend Tooling with vite.js
-- Minimal CSS with Pico.css
-- ESLint JavaScript Linter
+- [x] Single page application (SPA) using Mithril.js
+- [x] Mitosis pattern for simple state management
+- [x] Types without TypeScript using JSDoc
+- [x] Frontend Tooling with vite.js
+- [x] Minimal CSS with Pico.css
+- [x] ESLint JavaScript Linter
+- [ ] Testing
 
 PHP backend
 
-- REST API using Slim Framework 4
-- Autoloading (PSR-4)
-- Code styles (PSR-12)
-- Dependency injection container (PSR-11)
-- HTTP message interfaces (PSR-7)
-- HTTP Server Request Handlers and Middleware (PSR-15)
-- HTTP factories (PSR-17)
-- HTTP router and dispatcher (Slim)
-- Logging (PSR-3)
-- PHPDoc standard (PSR-5, PSR-19)
-- PHPStan (Level: max)
-- Single action controllers
-- Domain Driven Design (DDD) partially
-- JWT for (synchronous) authentication 
+- [x] REST API using Slim Framework 4
+- [x] Autoloading (PSR-4)
+- [x] Code styles (PSR-12)
+- [x] Dependency injection container (PSR-11)
+- [x] HTTP message interfaces (PSR-7)
+- [x] HTTP Server Request Handlers and Middleware (PSR-15)
+- [x] HTTP factories (PSR-17)
+- [x] HTTP router and dispatcher (Slim)
+- [x] Logging (PSR-3)
+- [x] PHPDoc standard (PSR-5, PSR-19)
+- [x] PHPStan (Level: max)
+- [x] Single action controllers
+- [x] Domain Driven Design (DDD) partially
+- [x] JWT for (synchronous) authentication
+- [ ] Unit Tests
+- [ ] Integration Tests
+
+Database
+
+- [x] SQLite database
+- [ ] Migration scripts
+- [ ] Seed scripts
 
 
 ## Development
@@ -101,9 +110,9 @@ sniffer:fix | Runs the sniffer:fix script as defined in composer.json.
 stan:check | Runs the stan:check script as defined in composer.json.
 
 
-## Helpful Links
+## Links
 
-Toolset
+Toolset used
 
 - https://mithril.js.org/
 - https://vitejs.dev/
@@ -111,11 +120,22 @@ Toolset
 - https://www.slimframework.com/
 - https://eslint.org/
 - https://jsdoc.app/
+- https://www.sqlite.org/
 
-Articles and blog posts
+Helpful websites, articles, and blog posts
 
 - https://restfulapi.net/http-methods/
 - https://dev.to/t7yang/type-safety-in-javascript-with-jsdoc-and-vscode-1a28
 - https://depth-first.com/articles/2021/10/20/types-without-typescript/
 - https://odan.github.io/slim4-skeleton/
 - https://github.com/slimphp/Slim-Skeleton
+
+
+## Contributing
+
+Please [create an issue](https://github.com/tbreuss/mithril-slim-skeleton/issues) before sending a pull reqest.
+
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE) for more information.
