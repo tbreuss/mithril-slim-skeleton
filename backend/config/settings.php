@@ -63,7 +63,7 @@ $settings['db'] = [
     ],
     */
     // sqlite
-    'path' => dirname(__DIR__, 1) . '/database/database.sqlite3',
+    'path' => $_ENV['API_SQLITE_PATH'],
     'flags' => [],
 ];
 
