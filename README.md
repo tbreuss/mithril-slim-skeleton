@@ -8,6 +8,14 @@ This is a single-page application (SPA) skeleton based on [Mithril.js](https://m
 <https://mithril-slim-skeleton.tebe.ch/>
 
 
+## Prerequisites
+
+- PHP >= 8.0
+- Composer >= 2.0
+- Node >= 17.0
+- NPM >= 8.0
+
+
 ## Installation
 
 ~~~bash
