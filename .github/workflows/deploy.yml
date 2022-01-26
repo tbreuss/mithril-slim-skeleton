@@ -11,9 +11,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout git repository
+        uses: actions/checkout@v2
 
-      - name: Setup PHP with Composer
+      - name: Setup PHP and Composer
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ env.PHP_VERSION }}
@@ -22,7 +23,7 @@ jobs:
       - name: Install PHP dependencies
         run: composer install --working-dir backend --no-dev --prefer-dist --no-progress --no-suggest
 
-      - name: Use Node.js ${{ env.NODE_VERSION }}
+      - name: Setup Node ${{ env.NODE_VERSION }} and NPM
         uses: actions/setup-node@v1
         with:
           node-version: ${{ env.NODE_VERSION }}
@@ -30,7 +31,7 @@ jobs:
       - name: Install NPM dependencies
         run: npm --prefix frontend ci
 
-      - name: Build application
+      - name: Build JS application
         run: npm --prefix frontend run build
 
       - name: Deploy to server via scp
