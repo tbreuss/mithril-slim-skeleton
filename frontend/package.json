@@ -6,7 +6,7 @@
         "build": "vite build",
         "preview": "vite preview",
         "eslint:check": "eslint . --ext .js",
-        "eslint:fix": "eslint . --ext .js",
+        "eslint:fix": "eslint . --ext .js --fix",
         "ts:check": "tsc --project jsconfig.json",
         "ts:check:watch": "tsc --watch --project jsconfig.json"
     },
