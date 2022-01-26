@@ -19,7 +19,7 @@ export const AdminUserForm = {
         e.preventDefault()
         AdminUser.save()
           .then(() => {
-            actions.addFlashMessage(`User was updated`)
+            actions.addFlashMessage('User was updated')
             m.route.set('/admin/users')
           })
           .catch((error) => {

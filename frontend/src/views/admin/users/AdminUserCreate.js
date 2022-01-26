@@ -26,7 +26,7 @@ export const AdminUserCreate = {
         e.preventDefault()
         AdminUser.create(newUser)
           .then(() => {
-            actions.addFlashMessage(`User was created`)
+            actions.addFlashMessage('User was created')
             m.route.set('/admin/users')
           })
           .catch((error) => {
