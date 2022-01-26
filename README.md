@@ -11,8 +11,8 @@ This is a single-page application (SPA) skeleton based on [Mithril.js](https://m
 ## Installation
 
 ~~~bash
-git clone {project}
-cd {project}
+git clone https://github.com/tbreuss/mithril-slim-skeleton
+cd mithril-slim-skeleton
 npm install --prefix frontend
 composer install --working-dir backend
 ~~~
@@ -55,13 +55,7 @@ Start development environment
 sh start.sh
 ~~~
 
-Or start one after the other.
-
-Frontend
-
-~~~bash
-npm run dev --prefix frontend
-~~~
+Or start backend and frontend manually
 
 Backend
 
@@ -69,6 +63,11 @@ Backend
 ENVIRONMENT=development php -d variables_order=EGPCS -S localhost:7000 -t backend/public
 ~~~
 
+Frontend
+
+~~~bash
+npm run dev --prefix frontend
+~~~
 
 
 ## Scripts
@@ -78,7 +77,7 @@ Frontend
 | Command | Description |
 | --- | --- |
 eslint:check | eslint . --ext .js
-eslint:fix | eslint . --ext .js
+eslint:fix | eslint . --ext .js --fix
 ts:check | tsc --project jsconfig.json
 ts:check:watch | tsc --watch --project jsconfig.json
 
