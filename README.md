@@ -8,24 +8,6 @@ This is a single-page application (SPA) skeleton based on [Mithril.js](https://m
 <https://mithril-slim-skeleton.tebe.ch/>
 
 
-## Requirements
-
-- PHP >= 8.0
-- Composer >= 2.0
-- Node >= 17.0
-- NPM >= 8.0
-
-
-## Installation
-
-~~~bash
-git clone https://github.com/tbreuss/mithril-slim-skeleton
-cd mithril-slim-skeleton
-npm install --prefix frontend
-composer install --working-dir backend
-~~~
-
-
 ## Features
 
 JS frontend
@@ -59,9 +41,26 @@ PHP backend
 
 Database
 
-- [x] SQLite database
-- [ ] Migration scripts
-- [ ] Seed scripts
+- [x] Database Migrations using Phinx
+- [x] SQLite database (for the sake of simplicity)
+- [x] Migration scripts
+- [x] Seed scripts using Faker
+
+
+## Requirements
+
+- PHP >= 8.0
+- Composer >= 2.0
+- Node >= 17.0
+- NPM >= 8.0
+
+
+## Installation
+
+~~~bash
+git clone https://github.com/tbreuss/mithril-slim-skeleton
+sh setup.sh
+~~~
 
 
 ## Development
@@ -72,19 +71,7 @@ Start development environment
 sh start.sh
 ~~~
 
-Or start backend and frontend manually
-
-Backend
-
-~~~bash
-ENVIRONMENT=development php -d variables_order=EGPCS -S localhost:7000 -t backend/public
-~~~
-
-Frontend
-
-~~~bash
-npm run dev --prefix frontend
-~~~
+Or start backend and frontend manually, see README files in own repos.
 
 
 ## Scripts
@@ -114,13 +101,15 @@ stan:check | Runs the stan:check script as defined in composer.json.
 
 Toolset used
 
-- https://mithril.js.org/
-- https://vitejs.dev/
-- https://picocss.com/
-- https://www.slimframework.com/
-- https://eslint.org/
-- https://jsdoc.app/
-- https://www.sqlite.org/
+- https://mithril.js.org
+- https://vitejs.dev
+- https://picocss.com
+- https://www.slimframework.com
+- https://eslint.org
+- https://jsdoc.app
+- https://www.sqlite.org
+- https://phinx.org
+- https://fakerphp.github.io
 
 Helpful websites, articles, and blog posts
 
