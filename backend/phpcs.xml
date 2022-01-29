@@ -7,9 +7,9 @@
 
     <config name="ignore_warnings_on_exit" value="1"/>
 
-    <file>./backend</file>
-    <file>./config</file>
-    <file>./public/api</file>
+    <file>config</file>
+    <file>public/api</file>
+    <file>src</file>
 
     <rule ref="PSR2"></rule>
     <!-- <rule ref="PSR12"></rule> -->

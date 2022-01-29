@@ -2,4 +2,4 @@ parameters:
 	level: 8
 	checkMissingIterableValueType: false
 	paths:
-		- backend
+		- src
