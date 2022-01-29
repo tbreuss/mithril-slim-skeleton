@@ -26,7 +26,7 @@ final class OrganizationListAction
     ): ResponseInterface {
         // Get request params
         $params = $request->getQueryParams();
-        $page = !empty($params['page']) ? $params['page'] : 1;
+        $page = !empty($params['page']) ? (int)$params['page'] : 1;
 
         // Invoke the request DTO
         $paginationInput = new PaginationInput($page);

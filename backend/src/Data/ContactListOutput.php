@@ -7,6 +7,7 @@ namespace App\Data;
 final class ContactListOutput
 {
     /**
+     * @param PaginationOutput $pagination
      * @param ContactListDataOutput[] $data
      */
     public function __construct(

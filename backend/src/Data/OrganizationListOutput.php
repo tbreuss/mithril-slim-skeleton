@@ -7,6 +7,7 @@ namespace App\Data;
 final class OrganizationListOutput
 {
     /**
+     * @param PaginationOutput $pagination
      * @param OrganizationListDataOutput[] $data
      */
     public function __construct(

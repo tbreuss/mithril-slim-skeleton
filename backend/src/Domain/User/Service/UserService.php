@@ -38,11 +38,11 @@ final class UserService
 
         $data = array_map(function (array $row): UserListOutput {
             return new UserListOutput(
-                $row['id'],
-                $row['username'],
-                $row['first_name'],
-                $row['last_name'],
-                $row['email']
+                (int)$row['id'],
+                (string)$row['username'],
+                (string)$row['first_name'],
+                (string)$row['last_name'],
+                (string)$row['email']
             );
         }, $rows);
 

@@ -32,7 +32,7 @@ final class OrganizationDetailAction
             throw new HttpNotFoundException($request);
         }
 
-        $contacts = $this->organizationService->getContactsByOrganizationId($organization['id']);
+        $contacts = $this->organizationService->getContactsByOrganizationId($id);
 
         // Transform the result into the JSON representation
         $result = [
