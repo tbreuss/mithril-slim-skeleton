@@ -34,8 +34,11 @@ jobs:
       - name: Build JS application
         run: npm --prefix frontend run build
 
-      - name: Prepare database
-        run: mv database backend/database
+      - name: Setup database
+        run: |
+          composer install --working-dir database --prefer-dist --no-progress --no-suggest
+          composer sd:setup
+          mv database backend/database
 
       - name: Deploy to server via scp
         uses: appleboy/scp-action@master
