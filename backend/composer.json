@@ -47,6 +47,6 @@
         "sniffer:check": "phpcs --standard=phpcs.xml",
         "sniffer:fix": "phpcbf --standard=phpcs.xml",
         "stan:check": "phpstan analyse -c phpstan.neon --no-progress --ansi",
-        "start": "ENVIRONMENT=development php -d variables_order=EGPCS -S localhost:7000 -t public & ../frontend/npm run dev"
+        "start": "ENVIRONMENT=development php -d variables_order=EGPCS -S localhost:7000 -t public"
     }
 }

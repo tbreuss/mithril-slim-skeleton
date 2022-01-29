@@ -1,7 +1,7 @@
 # SPA Skeleton with Mithril.js and Slim Framework
 
 This is a single-page application (SPA) skeleton based on [Mithril.js](https://mithril.js.org/) and [Slim Framework 4](https://www.slimframework.com/) trying to use good practices.
-
+The application itself offers a frontend and backend, that allows you to view and manage some specific CRM data.
 
 ## Demo
 
