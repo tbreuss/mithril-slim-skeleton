@@ -59,6 +59,7 @@ Database
 
 ~~~bash
 git clone https://github.com/tbreuss/mithril-slim-skeleton
+cd mithril-slim-skeleton
 sh setup.sh
 ~~~
 
