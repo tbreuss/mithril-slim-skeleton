@@ -27,6 +27,7 @@ final class UserDeleteAction
 
         // NOTE demo user must not be deleted
         if ($id === 20) {
+            // TODO send suitable status code and message for proper handling in frontend
             throw new HttpForbiddenException($request);
         }
 
