@@ -24,6 +24,7 @@ class UserSeeder extends AbstractSeed
             ];
         }
 
+        // this is for the demo login
         $data[] = [
             'username'        => 'demo',
             'email'           => $faker->email,

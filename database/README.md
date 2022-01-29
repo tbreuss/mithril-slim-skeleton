@@ -1,22 +1,35 @@
-# README
+# [Home](../README.md) / Database
 
-Fake data were taken from https://www.mockaroo.com/schemas/.
+These are the database migration and seed scripts using Phinx and SQLite for the single-page application (SPA) skeleton based on Mithril.js and Slim Framework.
+
+
+## Requirements
+
+- PHP >= 8.0
+- Composer >= 2.0
+
+
+## Installation
+
+    composer install
+
+
+## Usage
+
+Setup database
+
+    composer db:setup
+
+Refresh database
+
+    composer db:refresh
+
+Remove database
+
+    composer db:remove
+
 
 ## Links
 
-- [Mockaroo - Random Data Generator and API Mocking Tool](https://www.mockaroo.com/)
-- [MySQL to SQLite Online Converter](https://ww9.github.io/mysql2sqlite/)
-
-## Create database with schema
-
-~~~bash
-sqlite3 database.sqlite3 -init schema.sql
-~~~
-
-## Seed data into database
-
-~~~bash
-sqlite3 database.sqlite3 -init seeds/users.sql
-sqlite3 database.sqlite3 -init seeds/organizations.sql
-sqlite3 database.sqlite3 -init seeds/contacts.sql
-~~~
+- [Phinx](https://phinx.org): PHP Database Migrations For Everyone
+- [SQLite](https://www.sqlite.org): C-language library implementing a SQL database engine

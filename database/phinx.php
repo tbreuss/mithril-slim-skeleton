@@ -11,7 +11,7 @@ return
         'default_environment' => 'development',
         'development' => [
             'adapter' => 'sqlite',
-            'name' => './database.dev',
+            'name' => './database',
             'suffix' => 'sqlite3',
         ],
         'testing' => [
