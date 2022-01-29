@@ -1,5 +1,5 @@
 {
-    "require": {
+    "require-dev": {
         "php": ">=8.0",
         "robmorgan/phinx": "^0.12.10",
         "fzaninotto/faker": "^1.5"
