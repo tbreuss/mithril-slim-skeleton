@@ -7,6 +7,7 @@ namespace App\Action\Admin\User;
 use App\Domain\User\Service\UserService;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Slim\Exception\HttpForbiddenException;
 
 final class UserDeleteAction
 {
@@ -23,6 +24,11 @@ final class UserDeleteAction
         array $args
     ): ResponseInterface {
         $id = (int)$args['id'];
+
+        // NOTE demo user must not be deleted
+        if ($id === 20) {
+            throw new HttpForbiddenException($request);
+        }
 
         $this->userService->deleteUser($id);
 

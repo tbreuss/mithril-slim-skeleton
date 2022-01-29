@@ -4,10 +4,18 @@ declare(strict_types = 1);
 
 namespace App\Domain\Auth\Service;
 
+use App\Domain\User\Repository\UserRepository;
 use App\Exception\ValidationException;
 
 final class AuthService
 {
+    private UserRepository $userRepository;
+
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
+
     public function login(array $data): void
     {
         $this->validateCredentials($data);
@@ -28,10 +36,7 @@ final class AuthService
         $usernameOrPasswordInvalid = false;
 
         if (!empty($data['username']) && !empty($data['password'])) {
-            if ($data['username'] !== $_ENV['API_ADMIN_USERNAME']) {
-                $usernameOrPasswordInvalid = true;
-            }
-            if (!password_verify($data['password'], $_ENV['API_ADMIN_PASSWORD'])) {
+            if (!$this->userRepository->authenticateUser($data['username'], $data['username'])) {
                 $usernameOrPasswordInvalid = true;
             }
         }
