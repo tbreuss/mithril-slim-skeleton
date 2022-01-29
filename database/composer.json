@@ -1,5 +1,14 @@
 {
     "require": {
-        "robmorgan/phinx": "^0.12.10"
+        "robmorgan/phinx": "^0.12.10",
+        "fzaninotto/faker": "^1.5"
+    },
+    "scripts": {
+        "db:setup": "phinx migrate && phinx seed:run",
+        "db:remove": "rm database.dev.sqlite3",
+        "db:refresh": [
+            "@db:remove",
+            "@db:setup"
+        ]
     }
 }
