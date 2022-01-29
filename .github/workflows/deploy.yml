@@ -37,7 +37,7 @@ jobs:
       - name: Setup database
         run: |
           composer install --working-dir database --prefer-dist --no-progress --no-suggest
-          composer db:setup
+          composer db:setup --working-dir database
           mv database backend/database
 
       - name: Deploy to server via scp
