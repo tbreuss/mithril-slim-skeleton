@@ -1,4 +1,4 @@
-# [Home](../) / Backend
+# [Home](https://github.com/tbreuss/mithril-slim-skeleton) / Backend
 
 These is the backend application as REST API using Slim Framework and Composer for the single-page application (SPA) skeleton based on Mithril.js and Slim Framework.
 

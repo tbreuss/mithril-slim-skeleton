@@ -1,4 +1,4 @@
-# [Home](../) / Frontend
+# [Home](https://github.com/tbreuss/mithril-slim-skeleton) / Frontend
 
 These is the frontend application using Mithril.js and Vite.js for the single-page application (SPA) skeleton based on Mithril.js and Slim Framework.
 

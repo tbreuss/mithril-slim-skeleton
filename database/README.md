@@ -1,4 +1,4 @@
-# [Home](../) / Database
+# [Home](https://github.com/tbreuss/mithril-slim-skeleton) / Database
 
 These are the database migration and seed scripts using Phinx and SQLite for the single-page application (SPA) skeleton based on Mithril.js and Slim Framework.
 
