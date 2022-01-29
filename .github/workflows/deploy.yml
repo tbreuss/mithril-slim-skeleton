@@ -1,6 +1,9 @@
 name: Build & Deploy
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 env:
   NODE_VERSION: '17.x'
