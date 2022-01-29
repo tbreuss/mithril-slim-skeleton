@@ -1,4 +1,4 @@
-# [Home](../README.md) / Database
+# [Home](../) / Database
 
 These are the database migration and seed scripts using Phinx and SQLite for the single-page application (SPA) skeleton based on Mithril.js and Slim Framework.
 

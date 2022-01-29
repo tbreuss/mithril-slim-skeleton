@@ -1,4 +1,4 @@
-# [Home](../README.md) / Frontend
+# [Home](../) / Frontend
 
 These is the frontend application using Mithril.js and Vite.js for the single-page application (SPA) skeleton based on Mithril.js and Slim Framework.
 
