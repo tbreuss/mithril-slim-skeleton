@@ -74,7 +74,6 @@ const request = method => (url, options) => {
     ...options // might need Object.assign for Edge
   })
     .catch(err => {
-      debugger;
       lastError = err
       if (err.code in handlers) {
         handlers[err.code](err)
