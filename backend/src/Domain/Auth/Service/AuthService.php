@@ -36,7 +36,7 @@ final class AuthService
         $usernameOrPasswordInvalid = false;
 
         if (!empty($data['username']) && !empty($data['password'])) {
-            if (!$this->userRepository->authenticateUser($data['username'], $data['username'])) {
+            if (!$this->userRepository->authenticateUser($data['username'], $data['password'])) {
                 $usernameOrPasswordInvalid = true;
             }
         }

@@ -32,10 +32,11 @@ const handlers = {
     throw err
   },
   // 403 Forbidden (server did not accept given authentication)
-  403: () => {
+  403: (err) => {
     // force logout here
     Auth.logout()
     m.route.set('/error403')
+    throw err
   },
   // 404 Not Found (the requested resource could not be found)
   404: err => {
