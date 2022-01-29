@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 use App\Middleware\AuthMiddleware;
 use Slim\App;
 use Slim\Exception\HttpNotFoundException;

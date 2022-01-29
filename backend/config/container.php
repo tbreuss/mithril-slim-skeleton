@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 use Aura\Sql\DecoratedPdo;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;

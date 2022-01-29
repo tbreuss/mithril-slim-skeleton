@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 // Load dotenv file
 $environment = $_ENV['ENVIRONMENT'] ?? 'production';
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__), '.env.' . $environment);
