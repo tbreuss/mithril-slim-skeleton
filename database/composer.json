@@ -1,0 +1,15 @@
+{
+    "require-dev": {
+        "php": ">=8.0",
+        "robmorgan/phinx": "^0.12.10",
+        "fzaninotto/faker": "^1.5"
+    },
+    "scripts": {
+        "db:setup": "phinx migrate && phinx seed:run",
+        "db:remove": "rm database.sqlite3",
+        "db:refresh": [
+            "@db:remove",
+            "@db:setup"
+        ]
+    }
+}
