@@ -8,7 +8,6 @@ final class ContactListOutput
 {
     /**
      * @param ContactListDataOutput[] $data
-     * @param publicPaginationOutput $pagination
      */
     public function __construct(
         public PaginationOutput $pagination,
