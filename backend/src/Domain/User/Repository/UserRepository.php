@@ -105,7 +105,6 @@ final class UserRepository
             SELECT id, username, first_name, last_name, email
             FROM users
             WHERE id=:id
-            ORDER BY username
         SQL;
 
         $one = $this->connection->fetchOne($sql, [
@@ -113,5 +112,25 @@ final class UserRepository
         ]);
 
         return is_array($one) ? $one : null;
+    }
+
+    public function authenticateUser(string $username, string $password): bool
+    {
+        $sql = <<<SQL
+            SELECT password
+            FROM users
+            WHERE username=:username
+            AND deleted_at IS NULL
+        SQL;
+
+        $hash = $this->connection->fetchValue($sql, [
+            'username' => $username,
+        ]);
+
+        if (is_string($hash)) {
+            return password_verify($password, $hash);
+        }
+
+        return false;
     }
 }
