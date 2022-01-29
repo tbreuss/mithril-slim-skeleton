@@ -23,7 +23,6 @@ class OrganizationSeeder extends AbstractSeed
                 'created_at'    => date('Y-m-d H:i:s'),
                 'updated_at'    => null,
                 'deleted_at'    => null,
-
             ];
         }
 
