@@ -24,7 +24,7 @@ final class ContactListAction
         ServerRequestInterface $request,
         ResponseInterface $response
     ): ResponseInterface {
-        // Get request params
+        // Get page param
         $page = $this->getPageParam($request);
 
         // Create the request DTO

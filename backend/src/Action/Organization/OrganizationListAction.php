@@ -24,7 +24,7 @@ final class OrganizationListAction
         ServerRequestInterface $request,
         ResponseInterface $response
     ): ResponseInterface {
-        // Get page number
+        // Get page param
         $page = $this->getPageParam($request);
 
         // Create the request DTO
