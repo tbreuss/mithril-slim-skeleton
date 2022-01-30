@@ -18,4 +18,14 @@ final class PaginationOutput
         $this->pageCount = (int)floor($totalItemCount / $itemCountPerPage);
         $this->currentPage = min(max($page, 1), $this->pageCount);
     }
+
+    public function offset(): int
+    {
+        return ($this->currentPage - 1) * $this->itemCountPerPage;
+    }
+
+    public function limit(): int
+    {
+        return $this->itemCountPerPage;
+    }
 }
