@@ -1,5 +1,6 @@
 import m from 'mithril'
 import { Auth } from '@/models/Auth'
+import { openModal } from '@/helpers/modal'
 
 let lastError = null
 
@@ -21,26 +22,51 @@ const showElements = () => {
 }
 
 const handlers = {
-  // TODO do we ever have a status code 0?
+  // Errors like ERR_CONNECTION_REFUSED or similar
   0: err => {
-    m.route.set('/error500')
+    openModal({
+      color: 'error',
+      title: () => m('h3', 'Error'),
+      body: () => m('p', 'The connection to the webserver is unavailable or impossible.'),
+    })
     throw err
   },
   // 401 Unauthorized (authentication is required and has failed)
   401: err => {
-    m.route.set('/login')
+    openModal({
+      color: 'error',
+      title: () => m('h3', '401 Unauthorized'),
+      body: () => m('p', 'Authentication is required and has failed.'),
+      onclose: () => {
+        m.route.set('/login')
+      }
+    })
     throw err
   },
   // 403 Forbidden (server did not accept given authentication)
   403: (err) => {
-    // force logout here
-    Auth.logout()
-    m.route.set('/error403')
+    openModal({
+      color: 'error',
+      title: () => m('h3', '403 Forbidden'),
+      body: () => [
+        m('p', 'You don\'t have permission to access on this server.')
+      ],
+      onclose: () => {
+        Auth.logout()
+        m.route.set('/login')
+      }
+    })
     throw err
   },
   // 404 Not Found (the requested resource could not be found)
   404: err => {
-    m.route.set('/error404')
+    openModal({
+      color: 'error',
+      title: () => m('h3', '404 Not Found'),
+      body: () => [
+        m('p', 'The requested page or ressource could not be found.')
+      ]
+    })
     throw err
   },
   // 422 Unprocessable Entity (validation of form data failed)
@@ -50,7 +76,13 @@ const handlers = {
   },
   // 500 Internal Server Error (generic message for every server error)
   500: err => {
-    m.route.set('/error500')
+    openModal({
+      color: 'error',
+      title: () => m('h3', '500 Internal Server Error'),
+      body: () => [
+        m('p', 'The server responded with an error.')
+      ]
+    })
     throw err
   }
 }

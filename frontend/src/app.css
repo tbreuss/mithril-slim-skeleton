@@ -231,3 +231,28 @@ section {
 .closebtn:hover {
     color: black;
 }
+
+dialog h3 {
+    margin-top: -1rem;
+}
+
+dialog div.buttons {
+    margin-top: 2.25rem;
+    text-align: right;
+}
+
+dialog div.buttons a {
+    margin-left: 1rem;
+}
+
+dialog article.error {
+    background-color: #cc3333;
+}
+
+dialog article.error h3, dialog article.error p {
+    color: #edf0f3;
+}
+
+dialog article.error .close {
+    opacity: 1;
+}

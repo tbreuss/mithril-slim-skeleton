@@ -1,8 +1,41 @@
 import m from 'mithril'
+import { openModal } from '@/helpers/modal'
 
 export const Index = {
   view: () => [
     m('section',
+      m('button',
+        {
+          type: 'button',
+          onclick() {
+            openModal({
+              title: () => m('h3', 'Hello Modal!'),
+              body: () => m('p', 'Cras sit amet maximus risus. Pellentesque sodales odio sit amet augue finibus pellentesque. Nullam finibus risus non semper euismod.          This is an imperative modal example.'),
+              buttons: [
+                {id: 'ok', text: 'Ok'},
+                {id: 'cancel', text: 'Cancel', class: 'secondary'}
+              ],
+              onclick(id) {
+                // The modal closes automatically when a button is clicked
+                console.log('Clicked modal button id: ' + id)
+              }
+            })
+          }
+        },
+        'Open Modal 1'
+      ),
+      m('button',
+        {
+          type: 'button',
+          onclick() {
+            openModal({
+              title: () => m('h3', 'Modal 2'),
+              body: () => m('p', 'Cras sit amet maximus risus. Pellentesque sodales odio sit amet augue finibus pellentesque. Nullam finibus risus non semper euismod.          This is an imperative modal example.'),
+            })
+          }
+        },
+        'Open Modal 2'
+      ),
       m.trust(`
         <h1>Mithril.js & Slim Framework Skeleton</h1>
         <p>

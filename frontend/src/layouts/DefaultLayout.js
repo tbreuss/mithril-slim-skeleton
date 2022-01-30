@@ -1,7 +1,8 @@
 import m from 'mithril'
 import { Auth } from '@/models/Auth'
+import { Modal, modalIsOpen} from '@/helpers/modal.js'
 
-export const LayoutDefault = {
+export const DefaultLayout = {
   view: ({ attrs: { state, actions }, children }) => {
     return [
       m('.hero', [
@@ -64,7 +65,8 @@ export const LayoutDefault = {
           ' • ',
           m('a', { href: 'https://picocss.com', target: '_blank' }, 'Pico CSS')
         )
-      )
+      ),
+      modalIsOpen() && m(Modal)
     ]
   }
 }
