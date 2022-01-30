@@ -12,39 +12,52 @@ const goTo = (id) => {
 /**
  * @param {number} page
  */
- const loadList = (page) => {
+const loadList = (page) => {
   Organization.loadList(page);
 }
 
 /**
+ * @param {import('@/types').OrganizationList[]} items
+ */
+ const table = (items) => (
+  m('figure',
+    m('table.organization-list',
+      tableHead(),
+      tableBody(items)
+    )
+  )
+)
+
+const tableHead = () => m('thead',
+  m('tr',
+    m('th.name', 'Name'),
+    m('th.city', 'City'),
+    m('th.phone', 'Phone'),
+    m('th.link', ''),
+  )
+)
+
+/**
+ * @param {import('@/types').OrganizationList[]} items
+ */
+const tableBody = (items) => items.length > 0
+  ? m('tbody', items.map(org => tableRow(org)))
+  : m('tbody.empty',
+    m('tr',
+      m('td', { colspan: 4 }, 'No organizations found.')
+    )
+  )
+
+/**
  * @param {import('@/types').OrganizationList} org
  */
-const row = (org) => m('tr', {
+const tableRow = (org) => m('tr', {
   onclick: () => goTo(org.id)
 },
   m('td', org.name),
   m('td', org.city),
   m('td', org.phone),
   m('td', m('span.fakelink', 'See details'))
-)
-
-/**
- * @param {import('@/types').OrganizationList[]} items
- */
-const table = (items) => (
-  m('figure',
-    m('table.organization-list',
-      m('thead',
-        m('tr',
-          m('th.name', 'Name'),
-          m('th.city', 'City'),
-          m('th.phone', 'Phone'),
-          m('th.link', ''),
-        )
-      ),
-      m('tbody', items.map(org => row(org)))
-    )
-  )
 )
 
 export const OrganizationList = {
@@ -54,11 +67,7 @@ export const OrganizationList = {
   },
   view: () => [
     m('h1', 'Organizations'),
-    Organization.list
-      ? table(Organization.list)
-      : '',
-    Organization.paging
-      ? pagination('oList', Organization.paging, loadList)
-      : ''
+    table(Organization.list),
+    pagination('oList', Organization.paging, loadList)
   ]
 }

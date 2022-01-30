@@ -24,11 +24,10 @@ final class OrganizationListAction
         ServerRequestInterface $request,
         ResponseInterface $response
     ): ResponseInterface {
-        // Get request params
-        $params = $request->getQueryParams();
-        $page = !empty($params['page']) ? (int)$params['page'] : 1;
+        // Get page param
+        $page = $this->getPageParam($request);
 
-        // Invoke the request DTO
+        // Create the request DTO
         $paginationInput = new PaginationInput($page);
 
         // Invoke the Domain with inputs and retain the response
@@ -64,5 +63,11 @@ final class OrganizationListAction
                 ];
             }, $organizationListResponse->data),
         ];
+    }
+
+    private function getPageParam(ServerRequestInterface $request): int
+    {
+        $params = $request->getQueryParams();
+        return isset($params['page']) ? (int)$params['page'] : 1;
     }
 }

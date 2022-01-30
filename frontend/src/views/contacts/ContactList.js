@@ -12,38 +12,54 @@ const goTo = (id) => {
 /**
  * @param {number} page
  */
- const loadList = (page) => {
+const loadList = (page) => {
   Contact.loadList(page);
 }
 
 /**
  * @param {import('@/types').ContactList[]} contacts
  */
-const rows = (contacts) => (
+const table = (contacts) => (
   m('figure',
     m('table.contact-list.contact-list--all',
-      m('thead',
-        m('tr',
-          m('th.name', 'Name'),
-          m('th.city', 'Organization'),
-          m('th.city', 'City'),
-          m('th.phone', 'Phone'),
-          m('th.link', ''),
-        ),
-      ),
-      m('tbody',
-        contacts.map(contact => m('tr', {
-          onclick: () => goTo(contact.id)
-        },
-          m('td', contact.fullName),
-          m('td', contact.organization),
-          m('td', contact.city),
-          m('td', contact.phone),
-          m('td', m('span.fakelink', 'See details'))
-        ))
-      )
+      tableHead(),
+      tableBody(contacts)
     )
   )
+)
+
+const tableHead = () => m('thead',
+  m('tr',
+    m('th.name', 'Name'),
+    m('th.city', 'Organization'),
+    m('th.city', 'City'),
+    m('th.phone', 'Phone'),
+    m('th.link', ''),
+  )
+)
+
+/**
+ * @param {import('@/types').ContactList[]} contacts
+ */
+const tableBody = (contacts) => contacts.length > 0
+  ? m('tbody', contacts.map(contact => tableRow(contact)))
+  : m('tbody.empty',
+    m('tr',
+      m('td', { colspan: 4 }, 'No contacts found.')
+    )
+  )
+
+/**
+ * @param {import('@/types').ContactList} contact
+ */
+const tableRow = (contact) => m('tr', {
+  onclick: () => goTo(contact.id)
+},
+  m('td', contact.fullName),
+  m('td', contact.organization),
+  m('td', contact.city),
+  m('td', contact.phone),
+  m('td', m('span.fakelink', 'See details'))
 )
 
 export const ContactList = {
@@ -53,7 +69,7 @@ export const ContactList = {
   },
   view: () => [
     m('h1', 'Contacts'),
-    Contact.list ? rows(Contact.list) : '',
-    Contact.paging ? pagination('cList', Contact.paging, loadList) : '',
+    table(Contact.list),
+    pagination('cList', Contact.paging, loadList)
   ]
 }

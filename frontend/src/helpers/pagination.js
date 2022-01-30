@@ -40,11 +40,15 @@ const createLink = (cssClass, identifier, page, label, onPageClick) => {
 
 /**
  * @param {string} identifier
- * @param {import('@/types').Paging} paging
+ * @param {import('@/types').Paging|null} paging
  * @param {import('@/types').PageClickHandler} onPageClick
- * @returns {import('mithril').Vnode}
+ * @returns {import('mithril').Vnode|void}
  */
 export const pagination = (identifier, paging, onPageClick) => {
+  if (!paging) {
+    return
+  }
+
   const links = []
 
   let cssClass = paging.currentPage === 1 ? 'disabled' : ''

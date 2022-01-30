@@ -29,11 +29,7 @@ final class OrganizationService
             $this->repository->countContacts()
         );
 
-        // sql offset / limit
-        $offset = ($pagination->currentPage - 1) * $pagination->itemCountPerPage;
-        $limit = $pagination->itemCountPerPage;
-
-        $rows = $this->repository->fetchContacts($offset, $limit);
+        $rows = $this->repository->fetchContacts($pagination->offset(), $pagination->limit());
 
         $data = array_map(function (array $row): ContactListDataOutput {
             return new ContactListDataOutput(
@@ -79,11 +75,7 @@ final class OrganizationService
             $this->repository->countOrganizations()
         );
 
-        // sql offset / limit
-        $offset = ($pagination->currentPage - 1) * $pagination->itemCountPerPage;
-        $limit = $pagination->itemCountPerPage;
-
-        $rows = $this->repository->fetchOrganizations($offset, $limit);
+        $rows = $this->repository->fetchOrganizations($pagination->offset(), $pagination->limit());
 
         $data = array_map(function (array $row): OrganizationListDataOutput {
             return new OrganizationListDataOutput(
