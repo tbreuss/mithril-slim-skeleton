@@ -10,7 +10,7 @@ The application itself offers a frontend and backend, that allows you to view an
 
 ## Features
 
-JS frontend
+[JS frontend](https://github.com/tbreuss/mithril-slim-skeleton/tree/main/frontend)
 
 - [x] Single page application (SPA) using Mithril.js
 - [x] Mitosis pattern for simple state management
@@ -20,7 +20,7 @@ JS frontend
 - [x] ESLint JavaScript Linter
 - [ ] Testing
 
-PHP backend
+[PHP backend](https://github.com/tbreuss/mithril-slim-skeleton/tree/main/backend)
 
 - [x] REST API using Slim Framework 4
 - [x] Autoloading (PSR-4)
@@ -39,7 +39,7 @@ PHP backend
 - [ ] Unit Tests
 - [ ] Integration Tests
 
-Database
+[Database](https://github.com/tbreuss/mithril-slim-skeleton/tree/main/database)
 
 - [x] Database Migrations using Phinx
 - [x] SQLite database (for the sake of simplicity)
