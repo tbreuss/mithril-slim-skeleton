@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # start backend in background and store process id
-ENVIRONMENT=development php -d variables_order=EGPCS -S localhost:7000 -t backend/public & pids=$!
+composer start --working-dir=$(pwd)/backend & pids=$!
 
 # start frontend in background and store process id
-npm run dev --prefix frontend & pids+=" $!"
+npm run dev --prefix $(pwd)/frontend & pids+=" $!"
 
 # set up trap and kill processes in case CTRL-C is hit
 trap "kill $pids" SIGTERM SIGINT
