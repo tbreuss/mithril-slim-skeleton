@@ -8,14 +8,13 @@ import m from 'mithril'
   title(): any
   // Body render function
   body?(): any
-  buttons?: {id: string; text: string, class?: string}[]
   redraw?: boolean
   onclick?(id: string, event: any): void,
   onclose?(): void
 }} Options
 */
 
-const animationDuration = 400;
+const animationDuration = 0;
 
 /** @type {Options} */
 let options = {
@@ -27,11 +26,10 @@ let isOpen = false
 /**
  * @param {Options} opts
  */
-export function openModal(opts) {
+export function openErrorModal(opts) {
   // Deep copy the supplied opts
   isOpen = true
   options = { ...opts }
-  options.buttons = opts.buttons ? opts.buttons.map(b => ({ ...b })) : []
   // Redraw by default unless caller suppressed
   if (options.redraw == null || options.redraw === true) {
     m.redraw()
@@ -39,7 +37,7 @@ export function openModal(opts) {
 }
 
 /** Calls redraw by default unless called with `false` */
-export function closeModal(redraw = true) {
+export function closeErrorModal(redraw = true) {
   isOpen = false
   // Redraw by default unless caller suppressed
   if (redraw) {
@@ -47,33 +45,46 @@ export function closeModal(redraw = true) {
   }
 }
 
-export function modalIsOpen() {
+export function errorModalIsOpen() {
   return isOpen
 }
 
+let modelRef = undefined;
+
 /** Modal component */
-export const Modal = {
+export const ErrorModal = {
   oncreate() {
     const html = document.documentElement
-    html.classList.add('modal-is-opening')
+    html.classList.add('error-modal-is-opening')
     setTimeout(() => {
-      html.classList.remove('modal-is-opening')
-      html.classList.add('modal-is-open')
+      html.classList.remove('error-modal-is-opening')
+      html.classList.add('error-modal-is-open')
     }, animationDuration)
   },
   onbeforeremove() {
     const html = document.documentElement
-    html.classList.remove('modal-is-open', 'modal-is-opening')
-    html.classList.add('modal-is-closing')
+    html.classList.remove('error-modal-is-open', 'error-modal-is-opening')
+    html.classList.add('error-modal-is-closing')
     return new Promise(r => {
       setTimeout(r, animationDuration)
     })
   },
   onremove() {
-    document.documentElement.classList.remove('modal-is-closing')
+    document.documentElement.classList.remove('error-modal-is-closing')
   },
   view() {
-    return m('dialog', { open: true },
+    return m('dialog.error', {
+      open: true,
+      oncreate: ({ dom }) => {
+        modelRef = dom;
+      },
+      onclick: (e) => {
+        e.redraw = false
+        if (e.target === modelRef) {
+          closeErrorModal()
+        }
+      }
+    },
       m('article',
         m('a.close', {
           href: '#', ariaLabel: 'Close', onclick: (e) => {
@@ -84,23 +95,6 @@ export const Modal = {
         }, ''),
         options.title(),
         options.body != null && options.body(),
-        options.body != null && options.buttons.length > 0 && m('.buttons',
-          options.buttons.map(b =>
-            m('a',
-              {
-                href: '#',
-                role: 'button',
-                disabled: !isOpen,
-                class: b.class ?? '',
-                onclick(event) {
-                  isOpen = false
-                  options.onclick && options.onclick(b.id, event)
-                }
-              },
-              b.text
-            )
-          )
-        )
       )
     )
   }

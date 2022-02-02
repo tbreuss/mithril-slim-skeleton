@@ -13,6 +13,7 @@ import { OrganizationDetail } from '@/views/organizations/OrganizationDetail'
 import { OrganizationList } from '@/views/organizations/OrganizationList'
 import { Error404 } from '@/views/errors/Error404'
 import { Index } from '@/views/Index'
+import { Test } from '@/views/Test'
 import { DefaultLayout } from '@/layouts/DefaultLayout'
 import { Actions } from '@/state/Actions'
 import { State } from '@/state/State'
@@ -90,6 +91,11 @@ m.route(document.body, '/', {
   '/logout': {
     render: () => {
       return m(DefaultLayout, { state, actions }, m(AuthLogout))
+    }
+  },
+  '/test': {
+    render: () => {
+      return m(DefaultLayout, { state, actions }, m(Test, { state, actions }))
     }
   },
   // handling client error

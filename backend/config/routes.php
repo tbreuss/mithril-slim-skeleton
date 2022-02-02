@@ -19,6 +19,7 @@ return function (App $app) {
         $group->get('/organizations/{id}', \App\Action\Organization\OrganizationDetailAction::class)->setName('organizations.detail');
         $group->get('/organizations', \App\Action\Organization\OrganizationListAction::class)->setName('organizations.list');
         $group->get('/ping', \App\Action\PingAction::class)->setName('ping');
+        $group->get('/error/{type}', \App\Action\ErrorAction::class)->setName('error'); // showing different errors in frontend
     });
 
     // protected routes
