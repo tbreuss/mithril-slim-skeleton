@@ -1,11 +1,10 @@
 import m from 'mithril'
 import { Auth } from '@/models/Auth'
-
-let lastError = null
+import { openErrorModal } from '@/components/ErrorModal'
 
 // hide elements before beginning the request
 // prevents flickering of UI elements
-const hideElements = () => {
+const beforeRequest = () => {
   const footer = document.querySelector('footer')
   if (footer) {
     footer.style.visibility = 'hidden'
@@ -13,7 +12,7 @@ const hideElements = () => {
 }
 
 // show elements after finishing the request
-const showElements = () => {
+const afterRequest = () => {
   const footer = document.querySelector('footer')
   if (footer) {
     footer.style.visibility = 'visible'
@@ -21,51 +20,25 @@ const showElements = () => {
 }
 
 const handlers = {
-  // TODO do we ever have a status code 0?
-  0: err => {
-    m.route.set('/error500')
-    throw err
-  },
-  // 401 Unauthorized (authentication is required and has failed)
-  401: err => {
-    m.route.set('/login')
-    throw err
-  },
-  // 403 Forbidden (server did not accept given authentication)
-  403: (err) => {
-    // force logout here
-    Auth.logout()
-    m.route.set('/error403')
-    throw err
-  },
-  // 404 Not Found (the requested resource could not be found)
-  404: err => {
-    m.route.set('/error404')
-    throw err
-  },
   // 422 Unprocessable Entity (validation of form data failed)
   422: err => {
     // delegete error handling to parent
     throw err
   },
-  // 500 Internal Server Error (generic message for every server error)
-  500: err => {
-    m.route.set('/error500')
-    throw err
-  }
 }
 
 const request = method => (url, options) => {
-  lastError = null
-
   const token = Auth.getToken()
   if (token) {
+    if (!options) {
+      options = {}
+    }
     options.headers = {
       Authorization: 'Bearer ' + token
     }
   }
 
-  hideElements()
+  beforeRequest()
 
   return m.request({
     method,
@@ -74,15 +47,22 @@ const request = method => (url, options) => {
     ...options // might need Object.assign for Edge
   })
     .catch(err => {
-      lastError = err
+      const code = err.code || 0
       if (err.code in handlers) {
         handlers[err.code](err)
       } else {
+        openErrorModal({
+          title: () => m('h3', code >= 500 ? 'Server Error' : code >= 400 ? 'Client Error' : 'Error'),
+          body: () => [
+            m('p', err.response && err.response.description ? err.response.description : 'An error occured'),
+            m('p', m('small', err.response && err.response.message ? err.response.message : ''))
+          ]
+        })
         throw err
       }
     })
     .finally(() => {
-      showElements()
+      afterRequest()
     })
 }
 
@@ -90,7 +70,5 @@ export const api = {
   get: request('GET'),
   put: request('PUT'),
   post: request('POST'),
-  delete: request('DELETE'),
-  hasError: () => lastError !== null,
-  getError: () => lastError
+  delete: request('DELETE')
 }

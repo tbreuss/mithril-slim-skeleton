@@ -1,7 +1,9 @@
 import m from 'mithril'
 import { Auth } from '@/models/Auth'
+import { Modal, modalIsOpen} from '@/helpers/modal.js'
+import { ErrorModal, errorModalIsOpen} from '@/components/ErrorModal.js'
 
-export const LayoutDefault = {
+export const DefaultLayout = {
   view: ({ attrs: { state, actions }, children }) => {
     return [
       m('.hero', [
@@ -12,6 +14,7 @@ export const LayoutDefault = {
           m('ul', [
             m('li', m(m.route.Link, { href: '/organizations' }, 'Organizations')),
             m('li', m(m.route.Link, { href: '/contacts' }, 'Contacts')),
+            m('li', m(m.route.Link, { href: '/test' }, 'Tests')),
             Auth.hasToken()
               ? [
                 m('li', m(m.route.Link, { href: '/admin' }, 'Admin')),
@@ -64,7 +67,9 @@ export const LayoutDefault = {
           ' • ',
           m('a', { href: 'https://picocss.com', target: '_blank' }, 'Pico CSS')
         )
-      )
+      ),
+      modalIsOpen() && m(Modal),
+      errorModalIsOpen() && m(ErrorModal)
     ]
   }
 }

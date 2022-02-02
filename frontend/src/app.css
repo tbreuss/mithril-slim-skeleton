@@ -206,6 +206,7 @@ section {
     left: 0;
     right: 0;
     top: -3rem;
+    z-index:1;
 }
 
 .alert {
@@ -230,4 +231,34 @@ section {
 
 .closebtn:hover {
     color: black;
+}
+
+dialog h3 {
+    margin-top: -1rem;
+}
+
+dialog div.buttons {
+    margin-top: 2.25rem;
+    text-align: right;
+}
+
+dialog div.buttons a {
+    margin-left: 1rem;
+}
+
+dialog.error article {
+    background-color: #cc3333;
+    min-width: 75%;
+}
+
+dialog.error article h3, dialog.error article p {
+    color: #edf0f3;
+}
+
+dialog.error article .close {
+    opacity: 1;
+}
+
+dialog.error small {
+    color: rgba(255, 255, 255, 0.75)
 }
