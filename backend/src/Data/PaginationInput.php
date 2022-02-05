@@ -8,7 +8,7 @@ final class PaginationInput
 {
     public function __construct(
         public int $page,
-        public ?string $filter = null
+        public string $filter = ''
     ) {
     }
 }

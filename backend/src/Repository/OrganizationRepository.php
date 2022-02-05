@@ -15,7 +15,7 @@ final class OrganizationRepository
         $this->connection = $connection;
     }
 
-    public function fetchContacts(int $offset, int $limit, string $filter): array
+    public function fetchContacts(int $offset, int $limit, string $filter = ''): array
     {
         $params = ['limit' => $limit, 'offset' => $offset];
         $params = $this->addFilterParam($filter, $params);
@@ -42,7 +42,7 @@ final class OrganizationRepository
         return $this->connection->fetchAll($sql, $params);
     }
 
-    public function countContacts(string $filter): int
+    public function countContacts(string $filter = ''): int
     {
         $params = $this->addFilterParam($filter, []);
         $where = $this->getFilterConditionForContactsQuery($filter);
@@ -125,7 +125,7 @@ final class OrganizationRepository
         return (int)$this->connection->fetchValue($sql, $params);
     }
 
-    private function getFilterConditionForOrganizationQuery(string $filter = ''): string
+    private function getFilterConditionForOrganizationQuery(string $filter): string
     {
         if (strlen($filter) === 0) {
             return '';
