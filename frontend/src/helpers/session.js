@@ -1,9 +1,4 @@
 export const session = {
-  /**
-   * @type {Object.<string, string>}
-   */
-  errors: {},
-
   getString: (key, defaultValue) => {
     const str = window.sessionStorage.getItem(key)
     return str ? str : defaultValue;
