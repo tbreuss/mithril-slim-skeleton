@@ -37,6 +37,7 @@ final class PaginationOutput
         }
         $pageCount = (int)ceil($totalItemCount / $itemCountPerPage);
         $currentPage = min(max($page, 1), $pageCount);
+
         return [$pageCount, $currentPage];
     }
 }

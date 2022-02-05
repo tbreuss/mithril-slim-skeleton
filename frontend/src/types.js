@@ -34,7 +34,7 @@
  * @typedef {object} Contact
  * @property {ContactList[]} list
  * @property {Paging|null} paging
- * @property {function(number): unknown} loadList
+ * @property {function(number, string): unknown} loadList
  * @property {ContactDetail|null} current
  * @property {function(number): unknown} load
  */
@@ -72,7 +72,7 @@
  * @typedef {object} Organization
  * @property {OrganizationList[]} list
  * @property {Paging|null} paging
- * @property {function(number): unknown} loadList
+ * @property {function(number, string): unknown} loadList
  * @property {OrganizationDetail|null} current
  * @property {OrganizationDetailContact[]} contacts
  * @property {function(number): unknown} load
