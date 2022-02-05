@@ -1,19 +1,46 @@
 import m from 'mithril'
 import { Contact } from '@/models/Contact'
-import { restorePage, pagination } from '@/helpers/pagination'
+import { InputFilter } from '@/components/InputFilter'
+import { pagination } from '@/helpers/pagination'
+import { session } from '@/helpers/session'
 
-/**
- * @param {number} id
- */
-const goTo = (id) => {
-  m.route.set('/contacts/' + id)
+// Local state for this view
+const state = {
+  page: session.getInteger('contacts.page', 1),
+  filter: session.getString('contacts.filter', '')
 }
 
 /**
  * @param {number} page
  */
-const loadList = (page) => {
-  Contact.loadList(page);
+ const updatePage = (page) => {
+  session.setInteger('contacts.page', page)
+  state.page = page
+  loadList(state.page, state.filter)
+}
+
+/**
+ * @param {string} filter
+ */
+const updateFilter = (filter) => {
+  session.setString('contacts.filter', filter)
+  state.filter = filter
+  updatePage(1) // go to first page if filter changed
+}
+
+/**
+ * @param {number} id
+ */
+const goToRoute = (id) => {
+  m.route.set('/contacts/' + id)
+}
+
+/**
+ * @param {number} page
+ * @param {string} filter
+ */
+ const loadList = (page, filter) => {
+  Contact.loadList(page, filter);
 }
 
 /**
@@ -53,7 +80,7 @@ const tableBody = (contacts) => contacts.length > 0
  * @param {import('@/types').ContactList} contact
  */
 const tableRow = (contact) => m('tr', {
-  onclick: () => goTo(contact.id)
+  onclick: () => goToRoute(contact.id)
 },
   m('td', contact.fullName),
   m('td', contact.organization),
@@ -64,12 +91,16 @@ const tableRow = (contact) => m('tr', {
 
 export const ContactList = {
   oninit: () => {
-    const page = restorePage('contactList')
-    loadList(page)
+    loadList(state.page, state.filter)
   },
   view: () => [
     m('h1', 'Contacts'),
+    m(InputFilter, {
+      value: state.filter,
+      placeholder: 'Search for contacts...',
+      updateFilter: updateFilter,
+    }),
     table(Contact.list),
-    pagination('cList', Contact.paging, loadList)
+    pagination(Contact.paging, updatePage)
   ]
 }

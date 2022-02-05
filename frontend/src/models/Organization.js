@@ -6,11 +6,12 @@ import { api } from '@/helpers/api'
 export const Organization = {
   list: [],
   paging: null,
-  loadList: (page) => {
+  loadList: (page, filter) => {
     return api.get('/organizations', {
       withCredentials: false,
       params: {
-        page: page
+        page: page,
+        filter: filter
       }
     }).then((result) => {
       Organization.list = result.data

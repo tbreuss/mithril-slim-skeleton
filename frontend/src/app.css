@@ -138,10 +138,6 @@ span.delim {
     white-space: nowrap;
 }
 
-.organization-list tbody.empty td:last-child {
-    text-align: left;
-}
-
 .contact-detail,
 .organization-detail {
     margin-bottom: 3rem;
@@ -261,4 +257,8 @@ dialog.error article .close {
 
 dialog.error small {
     color: rgba(255, 255, 255, 0.75)
+}
+
+tbody.empty td:last-child {
+    text-align: left;
 }

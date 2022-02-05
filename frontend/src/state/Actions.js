@@ -11,5 +11,17 @@ export const Actions = state => ({
       return alert.key === key;
     });
     state.flashMessages.splice(index, 1)
+  },
+  /**
+   * @param {string} filter
+   */
+  setOrganizationsFilter: (filter) => {
+    state.organizationsFilter = filter
+  },
+  /**
+   * @param {number} page
+   */
+  setOrganizationsPage: (page) => {
+    state.organizationsPage = page
   }
 });

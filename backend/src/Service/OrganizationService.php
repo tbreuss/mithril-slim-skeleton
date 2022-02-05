@@ -26,10 +26,14 @@ final class OrganizationService
         // see https://docs.laminas.dev/laminas-paginator/usage/
         $pagination = new PaginationOutput(
             $input->page,
-            $this->repository->countContacts()
+            $this->repository->countContacts($input->filter)
         );
 
-        $rows = $this->repository->fetchContacts($pagination->offset(), $pagination->limit());
+        $rows = $this->repository->fetchContacts(
+            $pagination->offset(),
+            $pagination->limit(),
+            $input->filter
+        );
 
         $data = array_map(function (array $row): ContactListDataOutput {
             return new ContactListDataOutput(
@@ -72,10 +76,14 @@ final class OrganizationService
         // see https://docs.laminas.dev/laminas-paginator/usage/
         $pagination = new PaginationOutput(
             $input->page,
-            $this->repository->countOrganizations()
+            $this->repository->countOrganizations($input->filter)
         );
 
-        $rows = $this->repository->fetchOrganizations($pagination->offset(), $pagination->limit());
+        $rows = $this->repository->fetchOrganizations(
+            $pagination->offset(),
+            $pagination->limit(),
+            $input->filter
+        );
 
         $data = array_map(function (array $row): OrganizationListDataOutput {
             return new OrganizationListDataOutput(

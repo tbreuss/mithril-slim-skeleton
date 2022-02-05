@@ -1,25 +1,52 @@
 import m from 'mithril'
+import { InputFilter } from '@/components/InputFilter'
 import { Organization } from '@/models/Organization'
-import { restorePage, pagination } from '@/helpers/pagination'
+import { pagination } from '@/helpers/pagination'
+import { session } from '@/helpers/session'
 
-/**
- * @param {number} id
- */
-const goTo = (id) => {
-  m.route.set('/organizations/' + id)
+// local state for this view
+const state = {
+  page: session.getInteger('organizations.page', 1),
+  filter: session.getString('organizations.filter', '')
 }
 
 /**
  * @param {number} page
  */
-const loadList = (page) => {
-  Organization.loadList(page);
+const updatePage = (page) => {
+  session.setInteger('organizations.page', page)
+  state.page = page
+  loadList(state.page, state.filter)
+}
+
+/**
+ * @param {string} filter
+ */
+const updateFilter = (filter) => {
+  session.setString('organizations.filter', filter)
+  state.filter = filter
+  updatePage(1) // go to first page if filter changed
+}
+
+/**
+ * @param {number} id
+ */
+const goToRoute = (id) => {
+  m.route.set('/organizations/' + id)
+}
+
+/**
+ * @param {number} page
+ * @param {string} filter
+ */
+const loadList = (page, filter) => {
+  Organization.loadList(page, filter)
 }
 
 /**
  * @param {import('@/types').OrganizationList[]} items
  */
- const table = (items) => (
+const table = (items) => (
   m('figure',
     m('table.organization-list',
       tableHead(),
@@ -52,7 +79,7 @@ const tableBody = (items) => items.length > 0
  * @param {import('@/types').OrganizationList} org
  */
 const tableRow = (org) => m('tr', {
-  onclick: () => goTo(org.id)
+  onclick: () => goToRoute(org.id)
 },
   m('td', org.name),
   m('td', org.city),
@@ -62,12 +89,16 @@ const tableRow = (org) => m('tr', {
 
 export const OrganizationList = {
   oninit: () => {
-    const page = restorePage('organizationList')
-    loadList(page)
+    loadList(state.page, state.filter)
   },
-  view: () => [
+  view: (v) => [
     m('h1', 'Organizations'),
+    m(InputFilter, {
+      value: state.filter,
+      placeholder: 'Search for organizations...',
+      updateFilter: updateFilter,
+    }),
     table(Organization.list),
-    pagination('oList', Organization.paging, loadList)
+    pagination(Organization.paging, updatePage)
   ]
 }
