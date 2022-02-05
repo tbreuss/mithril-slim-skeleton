@@ -26,8 +26,8 @@ final class ContactListAction
     ): ResponseInterface {
         // Get query params from request
         $params = $request->getQueryParams();
-        $page = (int)$params['page'] ?? 1;
-        $filter = (string)$params['filter'] ?? '';
+        $page = isset($params['page']) ? (int)$params['page'] : 1;
+        $filter = isset($params['filter']) ? (string)$params['filter'] : '';
 
         // Create the request DTO
         $paginationInput = new PaginationInput($page, $filter);

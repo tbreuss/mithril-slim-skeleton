@@ -1,15 +1,15 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Action;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Slim\Exception\HttpInternalServerErrorException;
 use Slim\Exception\HttpBadRequestException;
 use Slim\Exception\HttpForbiddenException;
 use Slim\Exception\HttpGoneException;
+use Slim\Exception\HttpInternalServerErrorException;
 use Slim\Exception\HttpMethodNotAllowedException;
 use Slim\Exception\HttpNotFoundException;
 use Slim\Exception\HttpNotImplementedException;
@@ -31,8 +31,8 @@ final class ErrorAction
                 throw new HttpUnauthorizedException($request);
             case 403:
                 throw new HttpForbiddenException($request);
+            default:
             case 404:
-                default:
                 throw new HttpNotFoundException($request);
             case 405:
                 throw new HttpMethodNotAllowedException($request);
@@ -50,7 +50,6 @@ final class ErrorAction
                 break;
             case 602:
                 trigger_error('Fatal run-time error', E_USER_ERROR);
-                break;
         }
 
         return $response->withHeader('Content-Type', 'application/json');
