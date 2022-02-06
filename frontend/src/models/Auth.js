@@ -9,15 +9,15 @@ export const Auth = {
       withCredentials: false
     })
       .then((result) => {
-        window.localStorage.setItem(TOKEN_KEY, result.token)
+        window.sessionStorage.setItem(TOKEN_KEY, result.token)
         return result
       })
   },
   logout: () => {
-    window.localStorage.removeItem(TOKEN_KEY)
+    window.sessionStorage.removeItem(TOKEN_KEY)
   },
   hasToken: () => {
-    const token = window.localStorage.getItem(TOKEN_KEY)
+    const token = window.sessionStorage.getItem(TOKEN_KEY)
     if (token && (token.length > 0)) {
       return true
     }
@@ -25,7 +25,7 @@ export const Auth = {
   },
   getToken: () => {
     if (Auth.hasToken()) {
-      return window.localStorage.getItem(TOKEN_KEY)
+      return window.sessionStorage.getItem(TOKEN_KEY)
     }
     return null
   }
