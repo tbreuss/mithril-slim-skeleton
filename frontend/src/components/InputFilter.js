@@ -1,4 +1,5 @@
 import m from 'mithril'
+import { Icon } from '@/components/Icon'
 
 // local state
 let value = ''
@@ -8,6 +9,7 @@ export const InputFilter = {
     value = v.attrs.value
   },
   view: (v) => m('div.filter',
+    m(Icon, { name: 'search', class: 'search' }),
     m('input', {
       value: value,
       placeholder: v.attrs.placeholder || '',

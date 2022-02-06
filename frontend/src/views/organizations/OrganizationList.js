@@ -1,6 +1,7 @@
 import m from 'mithril'
 import { InputFilter } from '@/components/InputFilter'
 import { Organization } from '@/models/Organization'
+import { Icon } from '@/components/Icon'
 import { pagination } from '@/helpers/pagination'
 import { session } from '@/helpers/session'
 
@@ -84,7 +85,7 @@ const tableRow = (org) => m('tr', {
   m('td', org.name),
   m('td', org.city),
   m('td', org.phone),
-  m('td', m('span.fakelink', 'See details'))
+  m('td', m(Icon, { name: 'chevron-right' }))
 )
 
 export const OrganizationList = {
@@ -95,7 +96,9 @@ export const OrganizationList = {
     m('h1', 'Organizations'),
     m(InputFilter, {
       value: state.filter,
-      placeholder: 'Search for organizations...',
+      placeholder: Organization.paging
+        ? `Search ${Organization.paging.totalItemCount} organizations`
+        : '',
       updateFilter: updateFilter,
     }),
     table(Organization.list),

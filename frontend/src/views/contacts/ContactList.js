@@ -1,5 +1,6 @@
 import m from 'mithril'
 import { Contact } from '@/models/Contact'
+import { Icon } from '@/components/Icon'
 import { InputFilter } from '@/components/InputFilter'
 import { pagination } from '@/helpers/pagination'
 import { session } from '@/helpers/session'
@@ -86,7 +87,7 @@ const tableRow = (contact) => m('tr', {
   m('td', contact.organization),
   m('td', contact.city),
   m('td', contact.phone),
-  m('td', m('span.fakelink', 'See details'))
+  m('td', m(Icon, {name: 'chevron-right'}))
 )
 
 export const ContactList = {
@@ -97,7 +98,9 @@ export const ContactList = {
     m('h1', 'Contacts'),
     m(InputFilter, {
       value: state.filter,
-      placeholder: 'Search for contacts...',
+      placeholder: Contact.paging
+        ? `Search ${Contact.paging.totalItemCount} contacts`
+        : '',
       updateFilter: updateFilter,
     }),
     table(Contact.list),

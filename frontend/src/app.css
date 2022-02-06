@@ -270,6 +270,20 @@ div.filter {
     width: 66.6%;
 }
 
+div.filter input {
+    padding-left: 52px !important;
+}
+
+div.filter svg {
+    position: absolute;
+    position: absolute;
+    top: 0;
+    left: 1rem;
+    height: calc(1rem * var(--line-height) + var(--form-element-spacing-vertical) * 2 + var(--border-width) * 2);
+    stroke: var(--color);
+    opacity: 0.9;
+}
+
 div.filter a.reset {
     position: absolute;
     top: 0;
@@ -282,4 +296,20 @@ div.filter a.reset {
     background-size: auto 1.5rem;
     background-repeat: no-repeat;
     z-index: 2;
+}
+
+@media (max-width: 575.98px) {
+    div.hero strong.lg {
+        display: none;
+    }
+}
+
+@media (min-width: 576px) {
+    div.hero strong.sm {
+        display: none;
+    }
+
+    div.hero strong.lg {
+        display: block;
+    }
 }

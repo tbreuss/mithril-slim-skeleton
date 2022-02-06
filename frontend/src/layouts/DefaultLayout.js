@@ -9,7 +9,10 @@ export const DefaultLayout = {
       m('.hero', [
         m('nav.container-fluid', [
           m('ul', [
-            m('li', m('strong', m(m.route.Link, { href: '/' }, 'Mithril & Slim Skeleton')))
+            m('li', m(m.route.Link, { href: '/' },
+              m('strong.sm', {title: 'Mithril & Slim Skeleton'}, 'MSS'),
+              m('strong.lg', 'Mithril & Slim Skeleton')
+            ))
           ]),
           m('ul', [
             m('li', m(m.route.Link, { href: '/organizations' }, 'Organizations')),
