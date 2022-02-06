@@ -24,11 +24,13 @@ final class ContactListAction
         ServerRequestInterface $request,
         ResponseInterface $response
     ): ResponseInterface {
-        // Get page param
-        $page = $this->getPageParam($request);
+        // Get query params from request
+        $params = $request->getQueryParams();
+        $page = isset($params['page']) ? (int)$params['page'] : 1;
+        $filter = isset($params['filter']) ? (string)$params['filter'] : '';
 
         // Create the request DTO
-        $paginationInput = new PaginationInput($page);
+        $paginationInput = new PaginationInput($page, $filter);
 
         // Invoke the Domain with inputs and retain the response
         $userListOutput = $this->organizationService->listContacts($paginationInput);
@@ -63,11 +65,5 @@ final class ContactListAction
                 ];
             }, $listOutput->data),
         ];
-    }
-
-    private function getPageParam(ServerRequestInterface $request): int
-    {
-        $params = $request->getQueryParams();
-        return isset($params['page']) ? (int)$params['page'] : 1;
     }
 }

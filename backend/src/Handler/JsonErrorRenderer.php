@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Handler;
 
@@ -11,13 +11,14 @@ class JsonErrorRenderer extends \Slim\Error\AbstractErrorRenderer
     /**
      * @param Throwable $exception
      * @param bool      $displayErrorDetails
+     *
      * @return string
      */
     public function __invoke(Throwable $exception, bool $displayErrorDetails): string
     {
         $error = [
             'message' => $this->getErrorTitle($exception),
-            'description' => $this->getErrorDescription($exception)
+            'description' => $this->getErrorDescription($exception),
         ];
 
         if ($displayErrorDetails) {
@@ -27,11 +28,12 @@ class JsonErrorRenderer extends \Slim\Error\AbstractErrorRenderer
             } while ($exception = $exception->getPrevious());
         }
 
-        return (string) json_encode($error, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+        return (string)json_encode($error, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
     }
 
     /**
      * @param Throwable $exception
+     *
      * @return array<string|int>
      */
     private function formatExceptionFragment(Throwable $exception): array

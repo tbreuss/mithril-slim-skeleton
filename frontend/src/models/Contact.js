@@ -6,11 +6,12 @@ import { api } from '@/helpers/api'
 export const Contact = {
   list: [],
   paging: null,
-  loadList: (page) => {
+  loadList: (page, filter) => {
     return api.get('/contacts', {
       withCredentials: false,
       params: {
-        page: page
+        page: page,
+        filter: filter
       }
     }).then((result) => {
       Contact.list = result.data
