@@ -10,7 +10,7 @@ class ContactSeeder extends AbstractSeed
     {
         $faker = Faker\Factory::create();
         $data = [];
-        for ($i = 0; $i < 400; $i++) {
+        for ($i = 0; $i < 438; $i++) {
             $data[] = [
                 'organization_id' => rand(1, 100),
                 'first_name'      => $faker->firstName,
