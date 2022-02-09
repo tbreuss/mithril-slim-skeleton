@@ -1,5 +1,4 @@
 import m from 'mithril'
-import { openModal } from '@/helpers/modal'
 
 export const Index = {
   view: () => m.trust(`

@@ -11,7 +11,7 @@ const icons = {
 export const Icon = {
   view: (v) => {
     if (v.attrs.name in icons) {
-      let cssClass = v.attrs.class || ''
+      const cssClass = v.attrs.class || ''
       return m.trust(icons[v.attrs.name](cssClass))
     }
     return ''

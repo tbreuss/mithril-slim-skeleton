@@ -92,7 +92,7 @@ export const OrganizationList = {
   oninit: () => {
     loadList(state.page, state.filter)
   },
-  view: (v) => [
+  view: () => [
     m('h1', 'Organizations'),
     m(InputFilter, {
       value: state.filter,
